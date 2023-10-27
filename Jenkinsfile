@@ -8,10 +8,6 @@ pipeline {
                 git branch: 'main' , url: 'https://github.com/kripa03/awsproject.git'
             }
         }
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
+       
     }
 }
