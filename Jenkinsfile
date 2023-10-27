@@ -1,22 +1,12 @@
-
+Jenkinsfile (Declarative Pipeline)
+/* Requires the Docker Pipeline plugin */
 pipeline {
-  agent any
-  
-  stages {
-    stage('Git Checkout') {
-      steps {
-        // Git checkout
-        git branch: 'master', url: 'https://github.com/bhavyatrivedi01/Blood-Bank-management-Python.git'   
-      } 
+    agent { docker { image 'python:3.12.0-alpine3.18' } }
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
     }
-
-    stage('Deploy to Apache2') {
-      steps {
-        // Deploy to Apache2
-        sh 'chmod 777 ./deployment/deploy_prod.sh'
-        sh 'cat ./deployment/deploy_prod.sh'
-        sh './deployment/deploy_prod.sh'
-      }
-    }
-  }
 }
